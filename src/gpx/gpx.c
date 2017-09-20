@@ -5537,8 +5537,8 @@ int gpx_convert_line(Gpx *gpx, char *gcode_line)
 		//M124  Immediate motor stop
 	    case 124:
 		if(gpx->flag.reprapFlavor) {
-			CALL(clear_buffer(gpx));
-			CALL(extended_stop(gpx,1,0));
+			//CALL(clear_buffer(gpx));
+			CALL(extended_stop(gpx,1,1));
 			}
 		break;
                 // M126 - Turn blower fan on (valve open)
