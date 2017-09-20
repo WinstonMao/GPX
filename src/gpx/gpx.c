@@ -5536,8 +5536,10 @@ int gpx_convert_line(Gpx *gpx, char *gcode_line)
                 break;
 		//M124 Stop
 	    case 124:
-		CALL(clear_buffer(gpx));
-		CALL(extended_stop(gpx,1,1));
+		if(gpx->flag.reprapFlavor) {
+			CALL(clear_buffer(gpx));
+			CALL(extended_stop(gpx,1,1));
+		}
 		break;
                 // M126 - Turn blower fan on (valve open)
             case 126: {
