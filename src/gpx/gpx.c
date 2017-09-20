@@ -5535,7 +5535,7 @@ int gpx_convert_line(Gpx *gpx, char *gcode_line)
                 CALL( get_advanced_version_number(gpx) );
                 break;
 		//M124  Immediate motor stop
-	case 124:
+	    case 124:
 		if(gpx->flag.reprapFlavor) {
 			CALL(clear_buffer(gpx));
 			CALL(extended_stop(gpx,1,1));
