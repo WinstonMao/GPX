@@ -5535,12 +5535,12 @@ int gpx_convert_line(Gpx *gpx, char *gcode_line)
                 CALL( get_advanced_version_number(gpx) );
                 break;
 		//M124  Immediate motor stop
-			case 124:
-				if(gpx->flag.reprapFlavor) {
-					CALL(clear_buffer(gpx));
-					CALL(extended_stop(gpx,1,1));
-					}
-				break;
+		case 124:
+			if(gpx->flag.reprapFlavor) {
+				CALL(clear_buffer(gpx));
+				CALL(extended_stop(gpx,1,1));
+				}
+			break;
                 // M126 - Turn blower fan on (valve open)
             case 126: {
                 int state = (gpx->command.flag & S_IS_SET) ? ((unsigned)gpx->command.s ? 1 : 0) : 1;
