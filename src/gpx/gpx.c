@@ -1551,7 +1551,8 @@ static int set_fan(Gpx *gpx, unsigned extruder_id, unsigned state)
 
 /*
  WARNING: If you are using Gen 4 electronics (e.g. a Thing-o-Matic or a
- heavily modified Cupcake), THEN DO NOT USE M126 / M127. It can trigger
+ heavily modified Cupcake), THEN DO NOT USE 
+ / M127. It can trigger
  a bug in the Gen 4 Extruder Controller firmware that will cause the
  HBP temperature to go wild.  Note that the Extruder Controller is a
  separate uprocessor on a separate board.  It has it's own firmware.
@@ -5533,7 +5534,11 @@ int gpx_convert_line(Gpx *gpx, char *gcode_line)
             case 115:
                 CALL( get_advanced_version_number(gpx) );
                 break;
-
+		//M124 Stop
+	    case 124:
+		CALL(clear_buffer(gpx));
+		CALL(extended_stop(gpx,1,1));
+		break;
                 // M126 - Turn blower fan on (valve open)
             case 126: {
                 int state = (gpx->command.flag & S_IS_SET) ? ((unsigned)gpx->command.s ? 1 : 0) : 1;
